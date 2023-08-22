@@ -35,7 +35,7 @@ public class PDFRotation {
 
     public static void pageRotation() throws FileNotFoundException {
         // create Task
-        CPDFCreateTaskResult createTaskResult = client.createTask(CPDFDocumentEditorEnum.ROTATION, CPDFLanguageConstant.English);
+        CPDFCreateTaskResult createTaskResult = client.createTask(CPDFDocumentEditorEnum.ROTATION, CPDFLanguageConstant.ENGLISH);
         // taskId
         String taskId = createTaskResult.getTaskId();
         // upload File
@@ -44,10 +44,10 @@ public class PDFRotation {
         CPDFPageRotationParameter fileParameter = new CPDFPageRotationParameter();
         fileParameter.setPageOptions(Arrays.asList("1","2"));
         fileParameter.setRotation("90");
-        CPDFUploadFileResult uploadFileResult = client.uploadFile(new FileInputStream(file),taskId,filePassword,fileParameter,file.getName(), CPDFLanguageConstant.English);
+        CPDFUploadFileResult uploadFileResult = client.uploadFile(new FileInputStream(file),taskId,filePassword,fileParameter,file.getName(), CPDFLanguageConstant.ENGLISH);
         String fileKey = uploadFileResult.getFileKey();
         // perform tasks
-        client.executeTask(taskId, CPDFLanguageConstant.English);
+        client.executeTask(taskId, CPDFLanguageConstant.ENGLISH);
         // get task processing information
         CPDFTaskInfoResult taskInfo = client.getTaskInfo(taskId);
         // determine whether the task status is "TaskFinish"

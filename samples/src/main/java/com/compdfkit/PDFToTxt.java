@@ -34,17 +34,17 @@ public class PDFToTxt {
 
     public static void pdfToTxt() throws FileNotFoundException {
         // create Task
-        CPDFCreateTaskResult createTaskResult = client.createTask(CPDFConversionEnum.PDF_TO_TXT, CPDFLanguageConstant.English);
+        CPDFCreateTaskResult createTaskResult = client.createTask(CPDFConversionEnum.PDF_TO_TXT, CPDFLanguageConstant.ENGLISH);
         // taskId
         String taskId = createTaskResult.getTaskId();
         // upload File
         File file = new File("sample/test.pdf");
         String filePassword = "";
         CPDFToTxtParameter fileParameter = new CPDFToTxtParameter();
-        CPDFUploadFileResult uploadFileResult = client.uploadFile(new FileInputStream(file),taskId,filePassword,fileParameter,file.getName(), CPDFLanguageConstant.English);
+        CPDFUploadFileResult uploadFileResult = client.uploadFile(new FileInputStream(file),taskId,filePassword,fileParameter,file.getName(), CPDFLanguageConstant.ENGLISH);
         String fileKey = uploadFileResult.getFileKey();
         // perform tasks
-        client.executeTask(taskId, CPDFLanguageConstant.English);
+        client.executeTask(taskId, CPDFLanguageConstant.ENGLISH);
         // get task processing information
         CPDFTaskInfoResult taskInfo = client.getTaskInfo(taskId);
         // determine whether the task status is "TaskFinish"

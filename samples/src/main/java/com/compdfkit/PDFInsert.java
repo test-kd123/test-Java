@@ -34,7 +34,7 @@ public class PDFInsert {
 
     public static void pageInsert() throws FileNotFoundException {
         // create Task
-        CPDFCreateTaskResult createTaskResult = client.createTask(CPDFDocumentEditorEnum.INSERT, CPDFLanguageConstant.English);
+        CPDFCreateTaskResult createTaskResult = client.createTask(CPDFDocumentEditorEnum.INSERT, CPDFLanguageConstant.ENGLISH);
         // taskId
         String taskId = createTaskResult.getTaskId();
         // upload File
@@ -45,10 +45,10 @@ public class PDFInsert {
         fileParameter.setWidth("500");
         fileParameter.setHeight("800");
         fileParameter.setNumber("2");
-        CPDFUploadFileResult uploadFileResult = client.uploadFile(new FileInputStream(file),taskId,filePassword,fileParameter,file.getName(), CPDFLanguageConstant.English);
+        CPDFUploadFileResult uploadFileResult = client.uploadFile(new FileInputStream(file),taskId,filePassword,fileParameter,file.getName(), CPDFLanguageConstant.ENGLISH);
         String fileKey = uploadFileResult.getFileKey();
         // perform tasks
-        client.executeTask(taskId, CPDFLanguageConstant.English);
+        client.executeTask(taskId, CPDFLanguageConstant.ENGLISH);
         // get task processing information
         CPDFTaskInfoResult taskInfo = client.getTaskInfo(taskId);
         // determine whether the task status is "TaskFinish"

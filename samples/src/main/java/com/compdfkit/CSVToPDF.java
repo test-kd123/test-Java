@@ -21,11 +21,6 @@ import com.compdfkit.pojo.comPdfKit.CPDFUploadFileResult;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class CSVToPDF {
 
@@ -39,17 +34,17 @@ public class CSVToPDF {
 
     public static void csvToPDF() throws FileNotFoundException {
         // create Task
-        CPDFCreateTaskResult createTaskResult = client.createTask(CPDFConversionEnum.CSV_TO_PDF, CPDFLanguageConstant.English);
+        CPDFCreateTaskResult createTaskResult = client.createTask(CPDFConversionEnum.CSV_TO_PDF, CPDFLanguageConstant.ENGLISH);
         // taskId
         String taskId = createTaskResult.getTaskId();
         // upload File
         File file = new File("sample/test.csv");
         String filePassword = "";
         CCSVToPDFParameter fileParameter = new CCSVToPDFParameter();
-        CPDFUploadFileResult uploadFileResult = client.uploadFile(new FileInputStream(file),taskId,filePassword,fileParameter,file.getName(), CPDFLanguageConstant.English);
+        CPDFUploadFileResult uploadFileResult = client.uploadFile(new FileInputStream(file),taskId,filePassword,fileParameter,file.getName(), CPDFLanguageConstant.ENGLISH);
         String fileKey = uploadFileResult.getFileKey();
         // perform tasks
-        client.executeTask(taskId, CPDFLanguageConstant.English);
+        client.executeTask(taskId, CPDFLanguageConstant.ENGLISH);
         // get task processing information
         CPDFTaskInfoResult taskInfo = client.getTaskInfo(taskId);
         // determine whether the task status is "TaskFinish"

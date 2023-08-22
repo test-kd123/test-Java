@@ -13,7 +13,6 @@ import com.compdfkit.constant.CPDFConstant;
 import com.compdfkit.constant.CPDFLanguageConstant;
 import com.compdfkit.enums.CPDFConversionEnum;
 import com.compdfkit.param.CPDFToExcelParameter;
-import com.compdfkit.param.CPDFToWordParameter;
 import com.compdfkit.pojo.comPdfKit.CPDFCreateTaskResult;
 import com.compdfkit.pojo.comPdfKit.CPDFFileInfo;
 import com.compdfkit.pojo.comPdfKit.CPDFTaskInfoResult;
@@ -22,11 +21,6 @@ import com.compdfkit.pojo.comPdfKit.CPDFUploadFileResult;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class PDFToExcel {
 
@@ -40,7 +34,7 @@ public class PDFToExcel {
 
     public static void pdfToExcel() throws FileNotFoundException {
         // create Task
-        CPDFCreateTaskResult createTaskResult = client.createTask(CPDFConversionEnum.PDF_TO_EXCEL, CPDFLanguageConstant.English);
+        CPDFCreateTaskResult createTaskResult = client.createTask(CPDFConversionEnum.PDF_TO_EXCEL, CPDFLanguageConstant.ENGLISH);
         // taskId
         String taskId = createTaskResult.getTaskId();
         // upload File
@@ -48,10 +42,10 @@ public class PDFToExcel {
         String filePassword = "";
         CPDFToExcelParameter fileParameter = new CPDFToExcelParameter();
         fileParameter.setIsContainImg(CPDFToExcelParameter.IS_CONTAIN_IMG);
-        CPDFUploadFileResult uploadFileResult = client.uploadFile(new FileInputStream(file),taskId,filePassword,fileParameter,file.getName(), CPDFLanguageConstant.English);
+        CPDFUploadFileResult uploadFileResult = client.uploadFile(new FileInputStream(file),taskId,filePassword,fileParameter,file.getName(), CPDFLanguageConstant.ENGLISH);
         String fileKey = uploadFileResult.getFileKey();
         // perform tasks
-        client.executeTask(taskId, CPDFLanguageConstant.English);
+        client.executeTask(taskId, CPDFLanguageConstant.ENGLISH);
         // get task processing information
         CPDFTaskInfoResult taskInfo = client.getTaskInfo(taskId);
         // determine whether the task status is "TaskFinish"

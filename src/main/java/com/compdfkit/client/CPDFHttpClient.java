@@ -263,8 +263,10 @@ public class CPDFHttpClient {
      * @return CCreateTaskResult
      */
     CPDFCreateTaskResult createTask(String executeTypeUrl, Integer language) {
-        String url = address.concat(CPDFConstant.API_V1_CREATE_TASK).replace("{executeTypeUrl}", executeTypeUrl)
-                .concat("?language=").concat(String.valueOf(language));
+        String url = address.concat(CPDFConstant.API_V1_CREATE_TASK).replace("{executeTypeUrl}", executeTypeUrl);
+        if (Objects.nonNull(language)){
+            url = url.concat("&language=").concat(String.valueOf(language));
+        }
         ResponseEntity<CPDFResult<CPDFCreateTaskResult>> response;
         ParameterizedTypeReference<CPDFResult<CPDFCreateTaskResult>> typeRef = new ParameterizedTypeReference<CPDFResult<CPDFCreateTaskResult>>() {
         };
@@ -333,7 +335,9 @@ public class CPDFHttpClient {
         };
         param.add("file", inputStreamResource);
         param.add("taskId", taskId);
-        param.add("language", language);
+        if (Objects.nonNull(language)){
+            param.add("language", language);
+        }
         if (!StringUtils.isEmpty(password)) {
             param.add("password", password);
         }

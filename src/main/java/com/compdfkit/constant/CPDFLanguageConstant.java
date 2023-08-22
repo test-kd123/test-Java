@@ -12,6 +12,6 @@ package com.compdfkit.constant;
  */
 public interface CPDFLanguageConstant {
 
-    Integer English = 1;
-    Integer Chinese = 2;
+    Integer ENGLISH = 1;
+    Integer CHINESE = 2;
 }

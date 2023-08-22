@@ -20,7 +20,7 @@ Add the following dependency to your ***"pom.xml"***:
 <dependency>
     <groupId>com.compdf</groupId>
     <artifactId>compdfkit-api-java</artifactId>
-    <version>1.2.4</version>
+    <version>1.3.2</version>
 </dependency>
 ```
 
