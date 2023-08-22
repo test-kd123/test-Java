@@ -169,7 +169,10 @@ public class CPDFHttpClient {
      * @return CFileInfo
      */
     CPDFFileInfo getFileInfo(String fileKey, Integer language) {
-        String url = address.concat(CPDFConstant.API_V1_FILE_INFO).concat("?fileKey=").concat(fileKey).concat("&language=").concat(String.valueOf(language));
+        String url = address.concat(CPDFConstant.API_V1_FILE_INFO).concat("?fileKey=").concat(fileKey);
+        if (Objects.nonNull(language)){
+            url = url.concat("&language=").concat(String.valueOf(language));
+        }
         ResponseEntity<CPDFResult<CPDFFileInfo>> response;
         ParameterizedTypeReference<CPDFResult<CPDFFileInfo>> typeRef = new ParameterizedTypeReference<CPDFResult<CPDFFileInfo>>() {
         };
@@ -388,7 +391,10 @@ public class CPDFHttpClient {
      */
     CPDFCreateTaskResult executeTask(String taskId, Integer language) {
         log.info("Start executing task transfer, taskId: {}", taskId);
-        String url = address.concat(CPDFConstant.API_V1_EXECUTE_TASK).concat("?taskId=").concat(taskId).concat("&language=").concat(String.valueOf(language));
+        String url = address.concat(CPDFConstant.API_V1_EXECUTE_TASK).concat("?taskId=").concat(taskId);
+        if (Objects.nonNull(language)){
+            url = url.concat("&language=").concat(String.valueOf(language));
+        }
         ResponseEntity<CPDFResult<CPDFCreateTaskResult>> response;
         ParameterizedTypeReference<CPDFResult<CPDFCreateTaskResult>> result = new ParameterizedTypeReference<CPDFResult<CPDFCreateTaskResult>>() {
         };
@@ -418,7 +424,10 @@ public class CPDFHttpClient {
      */
     CPDFTaskInfoResult getTaskInfo(String taskId, Integer language) {
         log.info("Start to query the transfer status, taskId: {}", taskId);
-        String url = address.concat(CPDFConstant.API_V1_TASK_INFO).concat("?taskId=").concat(taskId).concat("&language=").concat(String.valueOf(language));
+        String url = address.concat(CPDFConstant.API_V1_TASK_INFO).concat("?taskId=").concat(taskId);
+        if (Objects.nonNull(language)){
+            url = url.concat("&language=").concat(String.valueOf(language));
+        }
         ResponseEntity<CPDFResult<CPDFTaskInfoResult>> response;
         ParameterizedTypeReference<CPDFResult<CPDFTaskInfoResult>> result = new ParameterizedTypeReference<CPDFResult<CPDFTaskInfoResult>>() {
         };
